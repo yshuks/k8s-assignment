@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tomcat-deployment
+  labels:
+    app: web-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web-app
+  template:
+    metadata:
+      name: tomcat-pod
+      labels:
+        app: web-app
+    spec:
+      containers:
+        - name: tomcat-container
+          image: tomcat-imagex
+          imagePullPolicy: Never
+          ports:
+           - containerPort: 8080
